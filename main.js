@@ -1,5 +1,5 @@
 var typed= new Typed(".text",{
-    strings: ["Front-End Developer", "Wordpress Expert"],
+    strings: ["GoHighLevel(GHL) Expert", "Wordpress Expert"],
     typeSpeed: 40,
     backSpeed: 40,
     backDelay: 200,
@@ -41,3 +41,43 @@ form.addEventListener("submit", (e) => {
 
     sendEmail();
  });
+
+ let lastScroll = 0;
+const header = document.querySelector('.header');
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+  const screenWidth = window.innerWidth;
+
+  if (screenWidth > 768) { // Only apply header hide/show on larger screens
+      if (currentScroll > lastScroll && currentScroll > 100) {
+          // Scroll down
+          header.style.transform = 'translateY(-100%)';
+      } else if (currentScroll < lastScroll) {
+          // Scroll up
+          header.style.transform = 'translateY(0)';
+      }
+
+      header.style.transition = 'transform 0.3s ease-in-out';
+      lastScroll = currentScroll;
+  } else {
+      // Always keep header visible on mobile
+      header.style.transform = 'translateY(0)';
+  }
+});
+
+
+const menuToggle = document.querySelector('.menu-toggle');
+const navbar = document.querySelector('.navbar');
+const navLinks = document.querySelectorAll('.navbar a');
+
+menuToggle.addEventListener('click', () => {
+    navbar.classList.toggle('active');
+});
+
+// Close the menu when any nav link is clicked
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navbar.classList.remove('active');
+    });
+});
